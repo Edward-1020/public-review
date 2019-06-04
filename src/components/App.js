@@ -9,6 +9,7 @@ export default class App extends Component {
             todos: [],
             filter: 'all'
         }
+        this.nextTodoId = 0;
     }
 
     render() {
@@ -17,9 +18,13 @@ export default class App extends Component {
 
         return (
             <div>
-                <AddTodo />
-                <TodoList todos={todos}/>
-                <Footer filter={filter}/>
+                <AddTodo addTodo={this.addTodo}/>
+                <TodoList
+                    todos={todos}
+                    toggleTodo={this.toggleTodo}/>
+                <Footer
+                    filter={filter}
+                    setVisibilityFilter={this.setVisibilityFilter}/>
             </div>
         )
     }
@@ -34,6 +39,36 @@ export default class App extends Component {
             } else {
                 return true;
             }
+        })
+    }
+
+    addTodo = text => {
+        const {todos} = this.state;
+        const todo = {
+            id: this.nextTodoId++,
+            text,
+            completed: false
+        };
+        const newTodos = [todo, todos];
+        this.setState({
+            todos: newTodos
+        })
+    }
+
+    toggleTodo = id => {
+        const newTodos = this.state.todos.map(item => {
+            return item.id === id ? {
+                ...item,
+                completed: !item.completed } : item;
+        });
+        this.setState({
+            todos: newTodos
+        })
+    }
+
+    setVisibilityFilter = filter => {
+        this.setState({
+            filter
         })
     }
 }

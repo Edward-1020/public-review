@@ -11,9 +11,22 @@ export default class AddTodo extends Component {
     render() {
         return (
             <div>
-                <input value={this.state.text}/>
-                <button>add</button>
+                <input
+                    value={this.state.text}
+                    onChange={this.handleChange}/>
+                <button
+                    onClick={this.handleClick}>add</button>
             </div>
         )
+    }
+
+    handleClick = () => {
+        this.props.addTodo(this.state.text);
+    }
+
+    handleChange = (e) => {
+        this.setState({
+            text: e.target.value
+        });
     }
 }
