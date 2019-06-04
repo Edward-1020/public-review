@@ -6,9 +6,18 @@ export default class Footer extends Component {
         return (
             <div>
                 <span>Show:</span>
-                <button disabled={filter === 'all'}>All</button>
-                <button disabled={filter === 'active'}>Active</button>
-                <button disabled={filter === 'completed'}>Completed</button>
+                <button
+                    disabled={filter === 'all'}>
+                    All
+                </button>
+                <button
+                    disabled={filter === 'active'}>
+                    Active
+                </button>
+                <button
+                    disabled={filter === 'completed'}>
+                    Completed
+                </button>
             </div>
         )
     }
