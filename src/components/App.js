@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import AddTodo from './AddTodo';
-import TodoList from './TodoList';
-import Footer from './Footer';
+import React, { Component } from 'react';
+import AddTodoContainer from '../containers/AddTodoContainer';
+import TodoListContainer from '../containers/TodoListContainer';
+import FooterContainer from '../containers/FooterContainer';
 export default class App extends Component {
     constructor(props) {
         super(props);
@@ -18,13 +18,9 @@ export default class App extends Component {
 
         return (
             <div>
-                <AddTodo addTodo={this.addTodo}/>
-                <TodoList
-                    todos={todos}
-                    toggleTodo={this.toggleTodo}/>
-                <Footer
-                    filter={filter}
-                    setVisibilityFilter={this.setVisibilityFilter}/>
+                <AddTodoContainer />
+                <TodoListContainer />
+                <FooterContainer />
             </div>
         )
     }
